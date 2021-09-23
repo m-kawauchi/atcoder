@@ -26,15 +26,15 @@ class Program
             return;
         }
 
-        bool tFlag = true;
+        bool tFlg = true;
         foreach (var c in TInput)
         {
             if (c != '1' && c != '2' && c != '3')
             {
-                tFlag = false;
+                tFlg = false;
             }
         }
-        if (!tFlag)
+        if (!tFlg)
         {
             Console.WriteLine("Tに不正な入力が含まれています");
             return;
