@@ -15,41 +15,38 @@ class Program
         if (string.IsNullOrEmpty(S1) || string.IsNullOrEmpty(S2) || string.IsNullOrEmpty(S3))
         {
             Console.WriteLine("文字列Sが入力されていません");
+            return;
         }
-        else
+
+        string TInput = Console.ReadLine();
+
+        if (string.IsNullOrEmpty(TInput))
         {
+            Console.WriteLine("文字列Tが入力されていません");
+            return;
+        }
 
-            string TInput = Console.ReadLine();
-
-            if (string.IsNullOrEmpty(TInput))
+        bool tFlag = true;
+        foreach (var c in TInput)
+        {
+            if (c != '1' && c != '2' && c != '3')
             {
-                Console.WriteLine("文字列Tが入力されていません");
+                tFlag = false;
             }
+        }
+        if (!tFlag)
+        {
+            Console.WriteLine("Tに不正な入力が含まれています");
+            return;
+        }
 
-            else
-            {
-                bool TFlag = true;
-                foreach (var c in TInput)
-                {
-                    if (c != '1' && c != '2' && c != '3')
-                    {
-                        Console.WriteLine("不正な入力が含まれています");
-                        TFlag = false;
-                        break;
-                    }
-                }
-                if (TFlag)
-                {
-                    for (int i = 0; i <= TInput.Length - 1; i++)
-                    {
-                        char _tmp = TInput[i];
-                        string str = _tmp.ToString();
-                        if (str == "1") Console.Write(S1);
-                        if (str == "2") Console.Write(S2);
-                        if (str == "3") Console.Write(S3);
-                    }
-                }
-            }
+        var SList = new List<string> {S1,S2,S3};
+        
+        for (int i = 0; i <= TInput.Length - 1; i++)
+        {
+            char _tmp = TInput[i];
+            int number = int.Parse(_tmp.ToString());
+            Console.Write(SList[number-1]);
         }
     }
 }

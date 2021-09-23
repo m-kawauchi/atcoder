@@ -16,41 +16,38 @@ class Program
             return;
         }
         
-        else
+
+        int Score;
+        if (!int.TryParse(input, out Score))
         {
-            int Score;
-            if (!int.TryParse(input, out Score))
-            {
-                Console.WriteLine("整数が入力されていません");
-            }
-
-            else
-            {
-                if (Score < 0 || Score > 100)
-                {
-                    Console.WriteLine("範囲外の値が入力されています");
-                }
-
-                else if (0 <= Score && Score < 40)
-                {
-                    Console.WriteLine((40-Score).ToString());
-                }
-
-                else if (Score < 70)
-                {
-                    Console.WriteLine((70-Score).ToString());
-                }
-                else if (Score < 90)
-                {
-                    Console.WriteLine((90-Score).ToString());
-                }
-                else
-                {
-                    Console.WriteLine("expert");
-                }
-
-            }
+            Console.WriteLine("整数が入力されていません");
+            return;
         }
         
+        if (Score < 0 || Score > 100)
+        {
+            Console.WriteLine("範囲外の値が入力されています");
+            return;
+        }
+
+        if (0 <= Score && Score < 40)
+        {
+            Console.WriteLine($"{40-Score}");
+            return;
+        }
+
+        if (Score < 70)
+        {
+            Console.WriteLine($"{70-Score}");
+            return;
+        }
+        if (Score < 90)
+        {
+            Console.WriteLine($"{90-Score}");
+            return;
+        }
+    
+        Console.WriteLine("expert");
+        return;
     }
 }
