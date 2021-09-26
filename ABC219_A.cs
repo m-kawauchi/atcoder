@@ -17,33 +17,33 @@ class Program
         }
         
 
-        int Score;
-        if (!int.TryParse(input, out Score))
+        int score;
+        if (!int.TryParse(input, out score))
         {
             Console.WriteLine("整数が入力されていません");
             return;
         }
-        
-        if (Score < 0 || Score > 100)
+
+        if (score < 0 || score > 100)
         {
             Console.WriteLine("範囲外の値が入力されています");
             return;
         }
 
-        if (0 <= Score && Score < 40)
+        if (0 <= score && score < 40)
         {
-            Console.WriteLine($"{40-Score}");
+            Console.WriteLine($"{40-score}");
             return;
         }
 
-        if (Score < 70)
+        if (score < 70)
         {
-            Console.WriteLine($"{70-Score}");
+            Console.WriteLine($"{70-score}");
             return;
         }
-        if (Score < 90)
+        if (score < 90)
         {
-            Console.WriteLine($"{90-Score}");
+            Console.WriteLine($"{90-score}");
             return;
         }
     
