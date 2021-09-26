@@ -26,6 +26,7 @@ class Program
             Console.WriteLine("数列に範囲外の値が含まれています");
             return;
         }
+        
         var ansList = pList.Select(x => (char)('a' + int.Parse(x) -1));
         Console.WriteLine(string.Join("",ansList));
 
