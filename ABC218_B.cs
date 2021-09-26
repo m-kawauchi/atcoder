@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,26 +8,26 @@ class Program
 {
     static void Main()
     {
-        var PList = Console.ReadLine().Split(' ');
-        bool pFlg = false;
-        foreach (var c in PList)
+        var pList = Console.ReadLine().Split(' ');
+
+        if (pList.Length != 26)
         {
-            int _tmp;
-            if (!int.TryParse(c, out _tmp))
-            {
-                Console.WriteLine("Pに整数以外が入力されています");
-                return;
-            }
-            if (_tmp >26 || _tmp < 0)
-            {
-                Console.WriteLine("Pの値が不正です");
-                return;
-            }
+            Console.WriteLine("数列の要素数が正しくありません");
+            return;
         }
-        for (int i = 0; i < 26; i++)
+        if (pList.Any(x => !int.TryParse(x, out int i)))
         {
-            Console.Write((char)('a' + int.Parse(PList[i]) - 1));
+            Console.WriteLine("数列に整数以外の入力が含まれています");
+            return;
         }
+        
+        if (pList.Any(x => int.Parse(x) > 26 | int.Parse(x) < 1))
+        {
+            Console.WriteLine("数列に範囲外の値が含まれています");
+            return;
+        }
+        var ansList = pList.Select(x => (char)('a' + int.Parse(x) -1));
+        Console.WriteLine(string.Join("",ansList));
 
     }
 }
