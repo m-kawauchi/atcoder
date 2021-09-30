@@ -27,8 +27,13 @@ class Program
             return;
         }
         
-        var ansList = pList.Select(x => (char)('a' + int.Parse(x) -1));
-        Console.WriteLine(string.Join("",ansList));
+        if (pList.Count() != pList.Distinct().Count())
+        {
+            Console.WriteLine("数列の要素が重複しています");
+            return;
+        }
+        
+        Console.WriteLine(string.Join("",pList.Select(x => (char)('a' + int.Parse(x) -1))));
 
     }
 }
