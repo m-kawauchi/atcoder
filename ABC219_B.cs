@@ -8,15 +8,14 @@ class Program
 {
     static void Main(string[] args)
     {
-        string s1, s2, s3;
-        s1 = Console.ReadLine();
-        s2 = Console.ReadLine();
-        s3 = Console.ReadLine();
-        if (string.IsNullOrEmpty(s1) || string.IsNullOrEmpty(s2) || string.IsNullOrEmpty(s3))
+        var inputS = Enumerable.Range(0, 3).Select(item => Console.ReadLine()).ToList();
+        
+        if (inputS.Any(item => string.IsNullOrEmpty(item)))
         {
             Console.WriteLine("文字列Sが入力されていません");
             return;
         }
+
 
         string tInput = Console.ReadLine();
 
@@ -32,9 +31,13 @@ class Program
             return;
         }
 
-        var sList = new List<string> {s1,s2,s3};
-        var ansList = tInput.Select(x => sList[int.Parse(x.ToString())-1]).ToList();
-        Console.Write(string.Join("",ansList));
         
+        Console.Write(
+            string.Join("",
+                tInput.Select(x => {
+                    var index = int.Parse(x.ToString()) -1;
+                    return inputS.ElementAt(index);
+                })
+            ));       
     }
 }
