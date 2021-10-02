@@ -14,8 +14,7 @@ class Program
             return;
         }
         
-        int day;
-        if (!int.TryParse(dayInput, out day))
+        if (!int.TryParse(dayInput, out int day))
         {
             Console.WriteLine("日数が整数で入力されていません");
             return;
@@ -50,7 +49,7 @@ class Program
             Console.WriteLine("No");
             return;
         }
-        
+
         Console.WriteLine("Yes");
     }
 }
