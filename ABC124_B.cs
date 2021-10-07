@@ -37,17 +37,15 @@ class Program
             return;
         }
 
-        int maxHeight = 0;
-        int ans = 0;
-
-        foreach (var item in heightList)
-        {
-            if (int.Parse(item) >= maxHeight)
+        var result = heightList.Select(item => int.Parse(item)).Aggregate (new
             {
-                ans += 1;
-            }
-            maxHeight = Math.Max(maxHeight,int.Parse(item));
-        }
-        Console.WriteLine($"{ans}");
+                ans = 0,maxHeight = 0
+            }, 
+            (total, next) => new 
+            {
+                ans = (total.maxHeight <= next) ? total.ans + 1 : total.ans,   maxHeight = (total.maxHeight <= next) ? next : total.maxHeight
+            });
+
+        Console.WriteLine($"{result.ans}");
     }
 }
