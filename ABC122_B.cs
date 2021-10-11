@@ -14,13 +14,14 @@ class Program
             Console.WriteLine("Sが入力されていません");
             return;
         }
+        var characters = "ACGT";
         var result = inputS.Aggregate (new
             {
                 count = 0,ans = 0
             }, 
             (total, next) => new 
             {
-                count = (next == 'A' || next == 'C' || next == 'G' || next == 'T') ? total.count + 1 : 0,   ans = (total.ans <= total.count) ? total.count : total.ans
+                count = characters.Any(i => i == next) ? total.count + 1 : 0,   ans = (total.ans <= total.count) ? total.count : total.ans
             });
         Console.WriteLine($"{result.ans}");
     }
