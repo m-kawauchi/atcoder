@@ -29,33 +29,40 @@ namespace ABC
                 Console.WriteLine("N,Mの入力数が不正です");
                 return;
             }
-            if (inputList.Any(item => string.IsNullOrEmpty(item)))
+            List <int> intList1;
+            try
             {
-                Console.WriteLine("N,Mが入力されていません");
-                return;
+                intList1 = inputList.Select(item => int.Parse(item)).ToList();
             }
-            if (inputList.Any(item => !int.TryParse(item, out int i)))
+            catch (FormatException)
             {
                 Console.WriteLine("N,Mが整数で入力されていません");
                 return;
             }
-            var intList1 = inputList.Select(item => int.Parse(item));
-            if (intList1.Any(item => item < 1 || item > 30))
+
+            if (intList1.ToList().Any(item => item < 1 || item > 30))
             {
                 Console.WriteLine("N,Mの値の範囲が不正です");
                 return;
             }
-            var researchs = Enumerable.Range(0, intList1.ElementAt(0)).Select(
-                item => {
-                    var tmp = Console.ReadLine().Split(' ');
-                    if (tmp.Any(x => !int.TryParse(x, out int i)))
-                    {
-                        return new Research(true);
-                    }
-                    var intInputs = tmp.Select(x => int.Parse(x));
-                    var favoritFoods = intInputs.Skip(1);
 
-                    if (favoritFoods.Count() != intInputs.ElementAt(0) || favoritFoods.Any(x => x < 1 || x > intList1.ElementAt(1)))
+            var inputList2 = Enumerable.Range(0, intList1.ElementAt(0)).Select(item => Console.ReadLine().Split(' ')); 
+            List <List<int>> intList2;
+            try
+            {
+                intList2 = inputList2.Select(item => item.Select(x => int.Parse(x)).ToList()).ToList();
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("K,Aが整数で入力されていません");
+                return;
+            }
+            var researchs = intList2.Select(
+                item => {
+                    
+                    var favoritFoods = item.Skip(1);
+
+                    if (favoritFoods.Count() != item.ElementAt(0) || favoritFoods.Any(x => x < 1 || x > intList1.ElementAt(1)))
                     {
                         return new Research(true);
                     }
